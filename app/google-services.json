@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "72073806037",
+    "firebase_url": "https://gocart-44652-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "gocart-44652",
+    "storage_bucket": "gocart-44652.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72073806037:android:337dedb455f20ec96f625c",
+        "android_client_info": {
+          "package_name": "com.example.gocart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB97X7D4ZE790bZ796YP9vFZObkXj4U3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
