@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="#8BC34A"
     android:layout_height="match_parent"
-    tools:context=".SplashFragment">
+    tools:context=".Auth.SplashFragment">
 
 
     <LinearLayout

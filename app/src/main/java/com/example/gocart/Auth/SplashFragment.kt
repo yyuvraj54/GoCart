@@ -1,7 +1,5 @@
-package com.example.gocart
+package com.example.gocart.Auth
 
-import android.os.Build
-import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,8 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.example.gocart.R
 import com.example.gocart.databinding.FragmentSplashBinding
 
 
