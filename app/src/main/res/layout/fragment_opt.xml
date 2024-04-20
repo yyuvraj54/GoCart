@@ -8,7 +8,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/tbOtpFrag"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:background="#B3B2B2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/tbOtpFrag" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,7 +96,18 @@
                 android:inputType="number"
                 android:maxLength="1"
                 tools:ignore="SpeakableTextPresentCheck" />
-
+            <EditText
+                android:id="@+id/code4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/box_border"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="1"
+                tools:ignore="SpeakableTextPresentCheck" />
             <EditText
                 android:id="@+id/code5"
                 android:layout_width="60dp"
@@ -126,7 +137,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/OtploginBtn"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
