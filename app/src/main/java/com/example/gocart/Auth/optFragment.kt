@@ -1,5 +1,6 @@
 package com.example.gocart.Auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.gocart.Activity.UsersMainActivity
 import com.example.gocart.Models.Users
 import com.example.gocart.R
 import com.example.gocart.Utils
@@ -68,6 +70,8 @@ class optFragment : Fragment() {
                 if(it){
                     Utils.hideDialog()
                     Utils.showToast(requireContext(),"Logged In ....")
+                    startActivity(Intent(requireActivity() , UsersMainActivity::class.java))
+                    requireActivity().finish()
                 }
             }
         }

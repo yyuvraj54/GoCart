@@ -23,6 +23,18 @@ class AuthViewModel:ViewModel() {
     private val _isSignedInSuccessfully  = MutableStateFlow(false)
     val isSignedInSuccessfully =_isSignedInSuccessfully
 
+
+    // ye isliye kiya h so that  ham login kar sake when we open app without seeing signup screen every time
+    private val isACurrentUser  = MutableStateFlow(false)
+    val isCurrentUser =isACurrentUser
+    init{
+        Utils.getAuthInstance().currentUser?.let{
+            isACurrentUser.value = true
+        }
+    }
+    // - --- -- - - - - - - -- - - - - -  yaha tak
+
+
     fun sendOTP(userNumber:String , activity: Activity){
 
         // ye callback h jo run hoga jab option wala code run hoga

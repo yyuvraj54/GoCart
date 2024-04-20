@@ -19,8 +19,6 @@ object Utils {
         dialog = AlertDialog.Builder(context).setView(progress.root).setCancelable(false).create()
         dialog!!.show()
     }
-
-
     fun hideDialog(){
         dialog?.dismiss()
     }
