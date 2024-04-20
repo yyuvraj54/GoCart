@@ -11,6 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.gocart.Models.Users
 import com.example.gocart.R
 import com.example.gocart.Utils
 import com.example.gocart.ViewModels.AuthViewModel
@@ -58,8 +59,10 @@ class optFragment : Fragment() {
     }
 
     private fun verifyOtp(otp: String) {
-        viewModel.signInWithPhoneAuthCredential(otp,userNumber)
 
+        val user  = Users(uid = Utils.getUserId() , userPhoneNumber = userNumber , userAddress = null )
+
+        viewModel.signInWithPhoneAuthCredential(otp,userNumber , user)
         lifecycleScope.launch {
             viewModel.isSignedInSuccessfully.collect{
                 if(it){

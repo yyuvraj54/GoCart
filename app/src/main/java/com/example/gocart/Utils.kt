@@ -33,4 +33,9 @@ object Utils {
         }
         return firebaseAuthInstance!!
     }
+
+    fun getUserId():String{
+        return FirebaseAuth.getInstance().currentUser!!.uid
+    }
+
 }
