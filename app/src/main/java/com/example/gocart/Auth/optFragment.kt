@@ -1,9 +1,11 @@
 package com.example.gocart.Auth
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +53,7 @@ class optFragment : Fragment() {
 
             if(otp.length < editText.size){
                 Utils.showToast(requireContext() , "Please Enter correct otp")
+                Utils.hideDialog()
             }
             else{
                 editText.forEach { it.text?.clear(); it.clearFocus() }
@@ -61,10 +64,8 @@ class optFragment : Fragment() {
     }
 
     private fun verifyOtp(otp: String) {
-
-        val user  = Users(uid = Utils.getUserId() , userPhoneNumber = userNumber , userAddress = null )
-
-        viewModel.signInWithPhoneAuthCredential(otp,userNumber , user)
+        Log.d(TAG, "Number: $userNumber")
+        viewModel.signInWithPhoneAuthCredential(otp,userNumber )
         lifecycleScope.launch {
             viewModel.isSignedInSuccessfully.collect{
                 if(it){
@@ -75,7 +76,6 @@ class optFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun sendOTP() {

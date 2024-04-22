@@ -1,10 +1,12 @@
 package com.example.gocart.Auth
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +18,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.gocart.Activity.UsersMainActivity
 import com.example.gocart.R
+import com.example.gocart.Utils
 import com.example.gocart.ViewModels.AuthViewModel
 import com.example.gocart.databinding.FragmentSplashBinding
+import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -32,8 +36,6 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding =FragmentSplashBinding.inflate(layoutInflater)
-
-
         Handler(Looper.getMainLooper()).postDelayed({
             lifecycleScope.launch {
                 viewModel.isCurrentUser.collect{

@@ -1,6 +1,8 @@
 package com.example.gocart.ViewModels
 
 import android.app.Activity
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.gocart.Models.Users
 import com.example.gocart.Utils
@@ -54,7 +56,7 @@ class AuthViewModel:ViewModel() {
 
                 _verificationId.value = verificationId
                 _otpSent.value =true  // jo dialog open ho raha usko close karne ke liye ye  use kiya  in OTP Fragment
-
+                Log.d(TAG, "Done sucess otp send")
 
             }
         }
@@ -69,12 +71,12 @@ class AuthViewModel:ViewModel() {
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
-    fun signInWithPhoneAuthCredential(otp : String , userNumber: String , user:Users  ) {
+    fun signInWithPhoneAuthCredential(otp : String , userNumber: String ) {
         val credential = PhoneAuthProvider.getCredential(_verificationId.value.toString(), otp)
         Utils.getAuthInstance().signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
-
+                    val user  = Users(uid = Utils.getUserId().toString() , userPhoneNumber = userNumber , userAddress = null )
                     FirebaseDatabase.getInstance().getReference("AllUsers").child("Users").child(user.uid!!).setValue(user)
 
                     _isSignedInSuccessfully.value =true
