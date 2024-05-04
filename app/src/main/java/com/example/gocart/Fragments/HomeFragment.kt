@@ -1,12 +1,15 @@
-package com.example.gocart
+package com.example.gocart.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.gocart.Adapters.AdapterCategory
+import com.example.gocart.Constants
 import com.example.gocart.Models.Category
+import com.example.gocart.R
 import com.example.gocart.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     private lateinit var  binding : FragmentHomeBinding
@@ -18,7 +21,16 @@ class HomeFragment : Fragment() {
 
 
         setAllCategories()
+        navigateToSearchFragment()
+//        onCategoryIconClicked()
         return binding.root
+    }
+
+
+    private fun navigateToSearchFragment() {
+        binding.searchitem.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun setAllCategories() {
@@ -26,8 +38,16 @@ class HomeFragment : Fragment() {
         for(i in 0 until Constants.allProductsCategory.size){
             categoryList.add(Category(title = Constants.allProductsCategory[i], image = Constants.allProductsCategoryIcon[i]))
         }
-        binding.rvcategory.adapter = AdapterCategory(categoryList)
+        binding.rvcategory.adapter = AdapterCategory(categoryList , :: onCategoryIconClicked)
 
     }
+    private fun onCategoryIconClicked(category: Category) {
+        val bundle =Bundle()
+        bundle.putString("category" , category.title)
+        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment,bundle)
+    }
+
+
+
 
 }

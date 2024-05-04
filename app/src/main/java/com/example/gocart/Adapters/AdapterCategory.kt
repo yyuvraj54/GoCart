@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.gocart.Models.Category
 import com.example.gocart.databinding.ItemViewProductCategoryBinding
 
-class AdapterCategory (
-    val categoryList :ArrayList<Category>
+class AdapterCategory(
+    val categoryList: ArrayList<Category>,
+    val onCategoryIconClicked: (Category) -> Unit
 ):RecyclerView.Adapter<AdapterCategory.CategoryViewHolder>(){
     class CategoryViewHolder(val binding : ItemViewProductCategoryBinding): ViewHolder(binding.root){
 
@@ -27,6 +28,10 @@ class AdapterCategory (
         holder.binding.apply {
             imageCategory.setImageResource(category.image)
             textCategory.setText(category.title)
+        }
+
+        holder.itemView.setOnClickListener {
+            onCategoryIconClicked(category)
         }
     }
 }
