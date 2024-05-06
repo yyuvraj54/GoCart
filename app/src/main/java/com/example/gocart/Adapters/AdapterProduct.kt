@@ -1,6 +1,7 @@
 package com.example.gocart.Adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
@@ -13,7 +14,11 @@ import com.example.gocart.databinding.ItemViewProductBinding
 import com.example.gocart.Models.Product
 
 
-class AdapterProduct() :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>(),Filterable {
+class AdapterProduct(
+    val onAddButtonClicked: (Product, ItemViewProductBinding) -> Unit,
+    val onIncrementButtonClicked: (Product, ItemViewProductBinding) -> Unit,
+    val onDecrementButtonClicked: (Product, ItemViewProductBinding) -> Unit
+) :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>(),Filterable {
     class ProductViewHolder(val binding: ItemViewProductBinding ): RecyclerView.ViewHolder(binding.root){}
 
     /// check this diffUtils this is for recycle view list of images // agar koi image frr se load ho rahi h to
@@ -59,11 +64,29 @@ class AdapterProduct() :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>()
             tvProductQuantity.text = quantity
 
             tvProductPrice.text = "₹"+product.productPrice
+
+            if(product.itemCount!!>0){
+                count.text = product.itemCount.toString()
+                tvAdd.visibility = View.GONE
+                llproductCount.visibility =View.VISIBLE
+            }
+
+            tvAdd.setOnClickListener{
+                onAddButtonClicked(product,this)
+            }
+            tvIncrementCount.setOnClickListener {
+                onIncrementButtonClicked(product,this)
+            }
+            tvDecrementCount.setOnClickListener {
+                onDecrementButtonClicked(product,this)
+            }
         }
 
         holder.itemView.setOnClickListener {
 //            onEditbuttonClicked(product)
         }
+
+
 
 
 
@@ -78,6 +101,8 @@ class AdapterProduct() :RecyclerView.Adapter<AdapterProduct.ProductViewHolder>()
         return filter
 
     }
+
+
 
 
 }
