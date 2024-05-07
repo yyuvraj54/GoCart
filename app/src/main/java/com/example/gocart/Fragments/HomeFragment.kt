@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
         setAllCategories()
         navigateToSearchFragment()
 //        onCategoryIconClicked()
-        get()
+//        get()
         return binding.root
     }
 

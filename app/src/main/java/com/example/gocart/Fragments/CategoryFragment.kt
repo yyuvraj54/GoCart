@@ -144,6 +144,7 @@ class CategoryFragment : Fragment() {
         }
         if(itemCountDec>0){
             productBinding.count.text = itemCountDec.toString()
+
         }
         else{
 

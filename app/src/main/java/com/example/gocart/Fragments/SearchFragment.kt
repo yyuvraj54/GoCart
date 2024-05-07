@@ -131,6 +131,7 @@ class SearchFragment : Fragment() {
         }
         if(itemCountDec>0){
             productBinding.count.text = itemCountDec.toString()
+
         }
         else{
 
@@ -140,6 +141,7 @@ class SearchFragment : Fragment() {
             productBinding.count.text = "0"
 
         }
+
         cartListner?.showCartLayout(-1)
     }
 

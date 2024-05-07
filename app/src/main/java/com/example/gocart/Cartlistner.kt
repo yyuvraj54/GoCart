@@ -5,6 +5,4 @@ interface CartListner {
     fun showCartLayout(itemCount:Int)
     fun savingCartItems(itemCount: Int)
 
-
-
 }
