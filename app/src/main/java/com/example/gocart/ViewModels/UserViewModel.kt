@@ -95,6 +95,15 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         totalItemCount.value = sharedPreferences.getInt("itemCount",0)
         return totalItemCount
     }
+    fun savingAddressStatus(){
+        sharedPreferences.edit().putBoolean("addressStatus",true).apply()
+    }
+    fun getAddress(): MutableLiveData<Boolean>{
+        val status = MutableLiveData<Boolean>()
+        status.value = sharedPreferences.getBoolean("addressStatus",false)
+        return status
+    }
+
 
 
 

@@ -38,7 +38,7 @@ class UsersMainActivity : AppCompatActivity() ,CartListner{
         getAllCartProducts()
         getTotalItemCount()
         onCartClicked()
-
+        onNextButtonClicked()
     }
 
 
@@ -89,10 +89,17 @@ class UsersMainActivity : AppCompatActivity() ,CartListner{
             val bsCartProductBinding = BottomSheetCartProductsBinding.inflate(LayoutInflater.from(this))
 
 
+
             val bs = BottomSheetDialog(this)
             bs.setContentView(bsCartProductBinding.root)
 
             bsCartProductBinding.tvNumberOfProductCount.text = binding.tvNumberOfProductCount.text
+
+            bsCartProductBinding.nextbtn.setOnClickListener {
+                startActivity(Intent(this, OrderPlaceActivity::class.java))
+            }
+
+
             adapterCartProducts = AdapterCartProducts()
             bsCartProductBinding.rvProductItems.adapter = adapterCartProducts
             adapterCartProducts.differ.submitList(cartProductsList)

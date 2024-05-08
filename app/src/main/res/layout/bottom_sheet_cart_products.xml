@@ -102,8 +102,8 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
                 android:layout_width="match_parent"
+                android:id="@+id/nextbtn"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_btn"
                 android:text="Next" />
