@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.example.gocart.Models.Users
 import com.example.gocart.Utils
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
@@ -71,12 +70,12 @@ class AuthViewModel:ViewModel() {
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
-    fun signInWithPhoneAuthCredential(otp : String , userNumber: String ) {
+    fun signInWithPhoneAuthCredential(otp: String, userNumber: String, user: Users) {
         val credential = PhoneAuthProvider.getCredential(_verificationId.value.toString(), otp)
         Utils.getAuthInstance().signInWithCredential(credential)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
-                    val user  = Users(uid = Utils.getUserId().toString() , userPhoneNumber = userNumber , userAddress = null )
+                    val user  = Users(uid = Utils.getUserId().toString() , userPhoneNumber = userNumber , userAddress = user.userAddress )
                     FirebaseDatabase.getInstance().getReference("AllUsers").child("Users").child(user.uid!!).setValue(user)
 
                     _isSignedInSuccessfully.value =true

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -20,8 +19,6 @@ import com.example.gocart.R
 import com.example.gocart.Utils
 import com.example.gocart.ViewModels.AuthViewModel
 import com.example.gocart.databinding.FragmentOptBinding
-import com.google.firebase.storage.internal.Util
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -65,7 +62,8 @@ class optFragment : Fragment() {
 
     private fun verifyOtp(otp: String) {
         Log.d(TAG, "Number: $userNumber")
-        viewModel.signInWithPhoneAuthCredential(otp,userNumber )
+        val user =Users(uid = null , userPhoneNumber = userNumber , userAddress = " ")
+        viewModel.signInWithPhoneAuthCredential(otp,userNumber, user)
         lifecycleScope.launch {
             viewModel.isSignedInSuccessfully.collect{
                 if(it){

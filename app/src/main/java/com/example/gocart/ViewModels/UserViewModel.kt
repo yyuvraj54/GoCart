@@ -9,9 +9,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.gocart.Models.Product
+import com.example.gocart.Models.Users
 import com.example.gocart.RoomDB.CartProductDao
 import com.example.gocart.RoomDB.cartProductDatabase
 import com.example.gocart.RoomDB.cartProducts
+import com.example.gocart.Utils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -82,6 +84,9 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         FirebaseDatabase.getInstance().getReference("Admins").child("AllProducts/${product.productRandomId}").child("itemCount").setValue(itemCount)
         FirebaseDatabase.getInstance().getReference("Admins").child("ProductCategory/${product.productCategory}/${product.productRandomId}").child("itemCount").setValue(itemCount)
         FirebaseDatabase.getInstance().getReference("Admins").child("ProductType/${product.productType}/${product.productRandomId}").child("itemCount").setValue(itemCount)
+    }
+    fun saveUserAddress(address: String){
+        FirebaseDatabase.getInstance().getReference("AllUsers").child("Users").child(Utils.getUserId()).child("userAddress").setValue(address)
 
     }
 
@@ -103,6 +108,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         status.value = sharedPreferences.getBoolean("addressStatus",false)
         return status
     }
+
 
 
 
