@@ -3,13 +3,12 @@ package com.example.gocart.ViewModels
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import android.view.Display.Mode
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.gocart.Api.ApiUtilities
+import com.example.gocart.Constants
 import com.example.gocart.Models.Product
-import com.example.gocart.Models.Users
 import com.example.gocart.RoomDB.CartProductDao
 import com.example.gocart.RoomDB.cartProductDatabase
 import com.example.gocart.RoomDB.cartProducts
@@ -20,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 
 class UserViewModel(application: Application): AndroidViewModel(application) {
@@ -27,6 +27,10 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
 
     val sharedPreferences : SharedPreferences = application.getSharedPreferences("My.Pref",MODE_PRIVATE)
     val cartProductDao : CartProductDao = cartProductDatabase.getDatabaseInstance(application).cartProductsDao()
+
+
+    val _paymentStatus = MutableStateFlow<Boolean>(false)
+    val paymentStatus = _paymentStatus
 
 
 
@@ -125,6 +129,20 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     }
     fun getAll(): LiveData<List<cartProducts>>{
         return cartProductDao.getAllCartProducts()
+    }
+
+
+    //Retrofit
+    suspend fun CheckPayment(header: Map<String ,String>){
+        val res = ApiUtilities.statusAPi.checkStatus(header,Constants.MERCHANTID , Constants.merchantTransactionId)
+
+        if(res.body() != null && res.body()!!.success){
+            _paymentStatus.value = true
+        }
+        else{
+            _paymentStatus.value = false
+        }
+
     }
 
 

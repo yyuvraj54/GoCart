@@ -45,16 +45,7 @@ class OrderPlaceActivity : AppCompatActivity() {
         initializePhonePay()
 
     }
-    val PhonePayView = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        if(it.resultCode == 1){
-            checkStatus()
-        }
 
-    }
-
-    private fun checkStatus() {
-        
-    }
 
 
     private fun initializePhonePay() {
@@ -88,6 +79,38 @@ class OrderPlaceActivity : AppCompatActivity() {
             .build()
 
     }
+
+    val PhonePayView = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        if(it.resultCode == RESULT_OK){
+            checkStatus()
+        }
+
+    }
+
+    private fun checkStatus() {
+        val xVerify = sha256("/pg/v1/status/${Constants.MERCHANTID}/${Constants.merchantTransactionId}${Constants.SALT_KEY}")+"###1"
+        val headers = mapOf(
+            "Content-Type" to "application/json",
+            "X-VERIFY" to xVerify,
+            "X-MERCHANT-ID" to Constants.MERCHANTID
+        )
+        lifecycleScope.launch {
+            viewModel.CheckPayment(headers)
+            viewModel.paymentStatus.collect{status ->
+                if(status){
+                    Utils.showToast(this@OrderPlaceActivity ,  "Payment Success")
+                    startActivity(Intent(this@OrderPlaceActivity ,UsersMainActivity::class.java))
+                    finish()
+                }
+                else{
+                    Utils.showToast(this@OrderPlaceActivity ,  "Payment Failed")
+                }
+
+            }
+        }
+
+    }
+
     private fun getPaymentView(){
         try{
             PhonePe.getImplicitIntent(this, b2BPGRequest , "com.phonepe.simulator")
@@ -112,7 +135,7 @@ class OrderPlaceActivity : AppCompatActivity() {
         binding.placeOrderBtn.setOnClickListener {
             viewModel.getAddress().observe(this){
                 if(it){
-
+                    getPaymentView()
                 }
                 else{
                     val addressLayoutBinding =AddressLayoutBinding.inflate(LayoutInflater.from(this))
