@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#8ED0FF"
     tools:context=".Auth.optFragment">
 
 
@@ -12,7 +13,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white_yellow"
+        android:background="#5DB5FF"
         android:minHeight="?attr/actionBarSize"
         app:navigationIcon="@drawable/arrow_back_24"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +42,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/rubikblack"
             android:text="We have sent a verification codee to" />
 
@@ -140,10 +142,19 @@
             android:id="@+id/OtploginBtn"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            app:backgroundTint= "#5DB5FF"
             android:layout_weight="1"
             android:backgroundTint="@color/green"
             android:layout_marginTop="25dp"
             android:text="Login" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/background_opt" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,13 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardCornerRadius="15sp"
-            android:backgroundTint="@color/border_color"
+            android:layout_gravity="center"
+            android:backgroundTint="#FFFFFF"
             >
 
             <ImageView
                 android:id="@+id/imageCategory"
                 android:layout_width="78sp"
                 android:layout_height="78sp"
+                android:layout_gravity="center"
                 android:padding="2sp"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/vegi" />

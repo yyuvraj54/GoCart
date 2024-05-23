@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background shape layer -->
+
+    <item android:drawable="@drawable/app_bar_custom_back" />
+    <item>
+        <bitmap
+
+            android:src="@drawable/search_back"
+            android:scaleType="centerInside"
+            android:height="180dp" />
+    </item>
+
+
+    <!-- Image layer -->
+
+</layer-list>
