@@ -3,6 +3,7 @@ package com.example.gocart.ViewModels
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -53,7 +54,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.d("fetch Data Fail", "onCancelled: "+ error.toString())
             }
 
         }
@@ -77,7 +78,7 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+
             }
 
         }

@@ -1,22 +1,14 @@
 package com.example.gocart.Activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import com.example.gocart.Adapters.AdapterCartProducts
 import com.example.gocart.CartListner
-import com.example.gocart.R
 import com.example.gocart.RoomDB.cartProducts
 import com.example.gocart.ViewModels.UserViewModel
 import com.example.gocart.databinding.ActivityUsersMainBinding

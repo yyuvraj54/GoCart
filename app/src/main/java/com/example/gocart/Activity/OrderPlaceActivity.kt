@@ -41,8 +41,9 @@ class OrderPlaceActivity : AppCompatActivity() {
 
         getAllCartProducts()
         backToHome()
-        onPlaceOrder()
         initializePhonePay()
+        onPlaceOrder()
+
 
     }
 
@@ -81,6 +82,7 @@ class OrderPlaceActivity : AppCompatActivity() {
     }
 
     val PhonePayView = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        Utils.showToast(this@OrderPlaceActivity , it.resultCode.toString());
         if(it.resultCode == RESULT_OK){
             checkStatus()
         }
